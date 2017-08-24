@@ -36,3 +36,26 @@ using (var cb = new CoinbinAPI())
 ```
 
 The `cb` object can now be used to make calls to the Coinbin API
+
+## Endpoints
+
+The set of all coins are stored in the `Coin` enumeration. As coinbin is
+updated I will keep this enumeration updated.
+
+### Get a coin's details
+
+```cs
+cb.GetCoinDetails(Coin.ETH);
+```
+
+Returns the details of a given coin:
+
+```
+|----------+----------|
+| Name     | Ethereum |
+| Rank     | 2        |
+| Ticker   | ETH      |
+| Value    | 323.511  |
+| Currency | USD      |
+|----------+----------|
+```
