@@ -125,6 +125,16 @@ Returns the historical information for ETH
 
 This returns up to 4 years of daily USD data for the given coin
 
+## Caveat
+
+Since we use an `Enum` to represent the set of all coins, we can't use
+identifiers for some coins:
+
+- `1ST` for `FirstBlood`
+- `B@` for `BankCoin`
+
+So these are converted from `FirstBlood` back to `1ST` when sent to Coinbin.
+
 ## Pending
 
 The `GetCoins` API currently throws a `NotImplementedException` and needs to be
