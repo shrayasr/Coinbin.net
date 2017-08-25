@@ -79,11 +79,48 @@ Returns the value of the given coin in USD along with the exchange rate:
 ## Get the exchange rate between 2 coins
 
 ```cs
-cs.GetCoinExchange(Coin.ETH, Coin.LTC);
+cb.GetCoinExchange(Coin.ETH, Coin.LTC);
 ```
 
 Returns the exchange rate between 2 coins:
 
 ```
-| ExchangeRate | 6.45554 |
+| ExchangeRate | 6.489775873199441 |
 ```
+
+## Get the exchange rate between 2 coins for a value
+
+```cs
+cb.GetCoinExchangeValue(Coin.ETH, 2.00m, Coin.LTC);
+```
+
+Returns the exchange rate between ETH and LTC for 2 coins of ETH
+
+```
+|--------------+--------------------|
+| Value        | 12.979551746398881 |
+| ValueCoin    | LTC                |
+| ExchangeRate | 6.489775873199441  |
+|--------------+--------------------|
+```
+
+## Get historical information for a coin
+
+```cs
+cb.GetCoinHistory(Coin.ETH);
+```
+
+Returns the historical information for ETH
+
+```
+|-----------------------------+--------+-----------+---------------|
+| Timestamp                   | Value  | When      | ValueCurrency |
+|-----------------------------+--------+-----------+---------------|
+| 25-Aug-17 4:00:37 AM +00:00 | 325.61 | today     | USD           |
+| 24-Aug-17 4:00:49 AM +00:00 | 317.52 | yesterday | USD           |
+| 23-Aug-17 4:01:07 AM +00:00 | 314.79 | Aug 23    | USD           |
+| ...                         | ...    | ...       | ...           |
+|-----------------------------+--------+-----------+---------------|
+```
+
+This returns up to 4 years of daily USD data for the given coin
