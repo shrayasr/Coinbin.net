@@ -15,6 +15,12 @@ namespace Coinbin.net.Util
 
     public static class EnumExtensions
     {
+        /* Major props to Michael Erls for his extension method on getting the
+         * description for an Enum. This helps with the FIRSTBLOOD -> 1ST
+         * conversion.
+         * 
+         * URL: https://www.codementor.io/cerkit/giving-an-enum-a-string-value-using-the-description-attribute-6b4fwdle0
+         */
         public static string GetDescription<T>(this T e) where T : IConvertible
         {
             string description = null;
