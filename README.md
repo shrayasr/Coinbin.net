@@ -75,3 +75,15 @@ Returns the value of the given coin in USD along with the exchange rate:
 | Currency     | USD                |
 |--------------+--------------------|
 ```
+
+## Get the exchange rate between 2 coins
+
+```cs
+cs.GetCoinExchange(Coin.ETH, Coin.LTC);
+```
+
+Returns the exchange rate between 2 coins:
+
+```
+| ExchangeRate | 6.45554 |
+```
