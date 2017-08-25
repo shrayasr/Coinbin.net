@@ -60,7 +60,7 @@ Returns the details of a given coin:
 |----------+----------|
 ```
 
-## Get a coin's value
+### Get a coin's value
 
 ```cs
 cb.GetCoinValue(Coin.ETH, 42.01m);
@@ -76,7 +76,7 @@ Returns the value of the given coin in USD along with the exchange rate:
 |--------------+--------------------|
 ```
 
-## Get the exchange rate between 2 coins
+### Get the exchange rate between 2 coins
 
 ```cs
 cb.GetCoinExchange(Coin.ETH, Coin.LTC);
@@ -88,7 +88,7 @@ Returns the exchange rate between 2 coins:
 | ExchangeRate | 6.489775873199441 |
 ```
 
-## Get the exchange rate between 2 coins for a value
+### Get the exchange rate between 2 coins for a value
 
 ```cs
 cb.GetCoinExchangeValue(Coin.ETH, 2.00m, Coin.LTC);
@@ -104,7 +104,7 @@ Returns the exchange rate between ETH and LTC for 2 coins of ETH
 |--------------+--------------------|
 ```
 
-## Get historical information for a coin
+### Get historical information for a coin
 
 ```cs
 cb.GetCoinHistory(Coin.ETH);
@@ -124,3 +124,10 @@ Returns the historical information for ETH
 ```
 
 This returns up to 4 years of daily USD data for the given coin
+
+## Pending
+
+The `GetCoins` API currently throws a `NotImplementedException` and needs to be
+implemented.
+
+If you want to help out, check out the method in the code and send a PR :+1:
