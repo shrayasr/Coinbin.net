@@ -59,3 +59,19 @@ Returns the details of a given coin:
 | Currency | USD      |
 |----------+----------|
 ```
+
+## Get a coin's value
+
+```cs
+cb.GetCoinValue(Coin.ETH, 42.01m);
+```
+
+Returns the value of the given coin in USD along with the exchange rate:
+
+```
+|--------------+--------------------|
+| ExchangeRate | 326.315            |
+| Value        | 13708.493149999998 |
+| Currency     | USD                |
+|--------------+--------------------|
+```
