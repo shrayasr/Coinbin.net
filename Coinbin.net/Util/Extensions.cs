@@ -27,7 +27,7 @@ namespace Coinbin.net.Util
 
             if (e is Enum)
             {
-                description = e.ToString();
+                description = e.ToString().ToLower();
 
                 Type type = e.GetType();
                 Array values = Enum.GetValues(type);
@@ -53,7 +53,7 @@ namespace Coinbin.net.Util
                         {
                             // we're only getting the first description we find
                             // others will be ignored
-                            description = ((DescriptionAttribute)descriptionAttributes[0]).Description;
+                            description = ((DescriptionAttribute)descriptionAttributes[0]).Description.ToLower();
                         }
 
                         break;
