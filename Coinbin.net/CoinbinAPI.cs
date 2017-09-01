@@ -28,6 +28,12 @@ namespace Coinbin.net
             _httpClient = new HttpClient();
         }
 
+        /// <summary>
+        /// Get the details of the given coin
+        /// </summary>
+        /// <param name="coin">Name of the coin</param>
+        /// <returns>Details of the coin</returns>
+        /// <exception cref="CoinbinException">Thrown when <paramref name="coin"/> is invalid</exception>
         public async Task<CoinDetail> GetCoinDetails(string coin)
         {
             ThrowIfInvalidCoin(coin);
@@ -41,6 +47,13 @@ namespace Coinbin.net
             return content.Coin;
         }
 
+        /// <summary>
+        /// Get the value of the coin in USD
+        /// </summary>
+        /// <param name="coin">Name of the coin</param>
+        /// <param name="value">Value of the coin to convert</param>
+        /// <returns>The exchange rate and the USD value of the coin</returns>
+        /// <exception cref="CoinbinException">Thrown when <paramref name="coin"/> is invalid</exception>
         public async Task<CoinValue> GetCoinValue(string coin, decimal value)
         {
             ThrowIfInvalidCoin(coin);
@@ -55,6 +68,13 @@ namespace Coinbin.net
             return content.Coin;
         }
 
+        /// <summary>
+        /// Get the exchange rate between one coin to another
+        /// </summary>
+        /// <param name="fromCoin">Name of the source coin</param>
+        /// <param name="toCoin">Name of the destination coin</param>
+        /// <returns>The exchange rate between the two coins</returns>
+        /// <exception cref="CoinbinException">Thrown when <paramref name="fromCoin"/> or <paramref name="toCoin"/> is invalid</exception>
         public async Task<CoinExchange> GetCoinExchange(string fromCoin, string toCoin)
         {
             ThrowIfInvalidCoin(fromCoin);
@@ -71,6 +91,14 @@ namespace Coinbin.net
             return content.Coin;
         }
 
+        /// <summary>
+        /// Return the exchange rate and the value of one coin in terms of another
+        /// </summary>
+        /// <param name="fromCoin">Name of the source coin</param>
+        /// <param name="fromValue">Value in source coin currency</param>
+        /// <param name="toCoin">Name of the destination coin</param>
+        /// <returns>The exchange rate and value in the destination coin currency</returns>
+        /// <exception cref="CoinbinException">Thrown when <paramref name="fromCoin"/> or <paramref name="toCoin"/> is invalid</exception>
         public async Task<CoinExchangeValue> GetCoinExchangeValue(string fromCoin, decimal fromValue, string toCoin)
         {
             ThrowIfInvalidCoin(fromCoin);
@@ -88,6 +116,12 @@ namespace Coinbin.net
             return content.Coin;
         }
 
+        /// <summary>
+        /// Get up to four years of daily USD data for a given coin
+        /// </summary>
+        /// <param name="coin">Name of the coin</param>
+        /// <returns>A list of daily values</returns>
+        /// <exception cref="CoinbinException">Thrown when <paramref name="coin"/> is invalid</exception>
         public async Task<List<CoinHistory>> GetCoinHistory(string coin)
         {
             ThrowIfInvalidCoin(coin);
@@ -102,6 +136,10 @@ namespace Coinbin.net
             return content.History;
         }
 
+        /// <summary>
+        /// Get the list of all the coins
+        /// </summary>
+        /// <returns>A dictionary containing all the coins that can be queried for in the system</returns>
         public async Task<IDictionary<string, CoinDetail>> GetCoins()
         {
             var url = BaseURL
