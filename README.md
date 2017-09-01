@@ -128,10 +128,3 @@ cb.GetCoins();
 ```
 
 This returns a `<string, CoinDetail>` dictionary
-
-## Pending
-
-The `GetCoins` API currently throws a `NotImplementedException` and needs to be
-implemented.
-
-If you want to help out, check out the method in the code and send a PR :+1:
