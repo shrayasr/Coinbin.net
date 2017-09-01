@@ -123,7 +123,13 @@ Returns the historical information for ETH
 |-----------------------------+--------+-----------+---------------|
 ```
 
-This returns up to 4 years of daily USD data for the given coin
+### Get the list of all coins
+
+```cs
+cb.GetCoins();
+```
+
+This returns a `<string, CoinDetail>` dictionary
 
 ## Pending
 
