@@ -7,6 +7,7 @@ A fully featured C# wrapper for the [coinbin.org](https://coinbin.org) API.
 ```
 PM> Install-Package coinbin.net
 ```
+**NOTE: DOESN'T WORK YET**  
 
 ## Supported Platforms
 
