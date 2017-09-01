@@ -97,26 +97,16 @@ namespace Coinbin.net
             return content.History;
         }
 
-        /*
-         * TODO implement this
-         * 
-         * The current problem here is the deserialization from 1ST -> FirstBlood and b@ -> BankCoin.
-         * I want to retain these in a Enum because it expersses the problem the best.
-         *
-        public async Task<List<Coin>> GetCoins()
+        public async Task<IDictionary<string, CoinDetail>> GetCoins()
         {
             var url = BaseURL
                         .AppendPathSegment("coins")
                         .Build();
 
-            var content = await MakeRequestAsync<CoinsWrapper<List<Coin>>>(url);
+            var content = await MakeRequestAsync<CoinsWrapper<IDictionary<string, CoinDetail>>>(url);
 
             return content.Coins;
         }
-         */
-
-        public async Task GetCoins()
-            => throw new NotImplementedException("This API hasn't been implemented yet.");
 
         private async Task<T> MakeRequestAsync<T>(string url)
         {
