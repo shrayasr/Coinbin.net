@@ -40,31 +40,28 @@ The `cb` object can now be used to make calls to the Coinbin API
 
 ## Endpoints
 
-The set of all coins are stored in the `Coin` enumeration. As coinbin is
-updated I will keep this enumeration updated.
-
 ### Get a coin's details
 
 ```cs
-cb.GetCoinDetails(Coin.ETH);
+cb.GetCoinDetails("ETH");
 ```
 
 Returns the details of a given coin:
 
 ```
-|----------+----------|
-| Name     | Ethereum |
-| Rank     | 2        |
-| Ticker   | ETH      |
-| Value    | 323.511  |
-| Currency | USD      |
-|----------+----------|
+|--------+------------|
+| Name   | Ethereum   |
+| Rank   | 2          |
+| Ticker | ETH        |
+| USD    | 323.511    |
+| BTC    | 0.08243913 |
+|--------+------------|
 ```
 
 ### Get a coin's value
 
 ```cs
-cb.GetCoinValue(Coin.ETH, 42.01m);
+cb.GetCoinValue("ETH", 42.01m);
 ```
 
 Returns the value of the given coin in USD along with the exchange rate:
@@ -72,15 +69,14 @@ Returns the value of the given coin in USD along with the exchange rate:
 ```
 |--------------+--------------------|
 | ExchangeRate | 326.315            |
-| Value        | 13708.493149999998 |
-| Currency     | USD                |
+| USD          | 13708.493149999998 |
 |--------------+--------------------|
 ```
 
 ### Get the exchange rate between 2 coins
 
 ```cs
-cb.GetCoinExchange(Coin.ETH, Coin.LTC);
+cb.GetCoinExchange("ETH", "LTC");
 ```
 
 Returns the exchange rate between 2 coins:
@@ -92,7 +88,7 @@ Returns the exchange rate between 2 coins:
 ### Get the exchange rate between 2 coins for a value
 
 ```cs
-cb.GetCoinExchangeValue(Coin.ETH, 2.00m, Coin.LTC);
+cb.GetCoinExchangeValue("ETH", 2.00m, "LTC");
 ```
 
 Returns the exchange rate between ETH and LTC for 2 coins of ETH
@@ -108,7 +104,7 @@ Returns the exchange rate between ETH and LTC for 2 coins of ETH
 ### Get historical information for a coin
 
 ```cs
-cb.GetCoinHistory(Coin.ETH);
+cb.GetCoinHistory("ETH");
 ```
 
 Returns the historical information for ETH
@@ -125,16 +121,6 @@ Returns the historical information for ETH
 ```
 
 This returns up to 4 years of daily USD data for the given coin
-
-## Caveat
-
-Since we use an `Enum` to represent the set of all coins, we can't use
-identifiers for some coins:
-
-- `1ST` for `FirstBlood`
-- `B@` for `BankCoin`
-
-So these are converted from `FirstBlood` back to `1ST` when sent to Coinbin.
 
 ## Pending
 
