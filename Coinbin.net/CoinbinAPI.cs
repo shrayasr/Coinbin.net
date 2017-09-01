@@ -71,8 +71,11 @@ namespace Coinbin.net
             return content.Coin;
         }
 
-        public async Task<CoinExchangeValue> GetCoinExchangeValue (string fromCoin, decimal fromValue, string toCoin)
+        public async Task<CoinExchangeValue> GetCoinExchangeValue(string fromCoin, decimal fromValue, string toCoin)
         {
+            ThrowIfInvalidCoin(fromCoin);
+            ThrowIfInvalidCoin(toCoin);
+
             var url = BaseURL
                         .AppendPathSegment(fromCoin)
                         .AppendPathSegment(Math.Round(fromValue, 2).ToString())
@@ -87,6 +90,8 @@ namespace Coinbin.net
 
         public async Task<List<CoinHistory>> GetCoinHistory(string coin)
         {
+            ThrowIfInvalidCoin(coin);
+
             var url = BaseURL
                         .AppendPathSegment(coin)
                         .AppendPathSegment("history")
@@ -125,7 +130,7 @@ namespace Coinbin.net
 
         private void ThrowIfInvalidCoin(string coin)
         {
-            if (!CoinValidator.IsValid(coin))
+            if (coin.IsEmpty() || !CoinValidator.IsValid(coin))
                 throw new CoinbinException($"{coin} isn't a valid coin");
         }
 

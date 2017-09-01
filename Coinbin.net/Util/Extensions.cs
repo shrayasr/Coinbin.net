@@ -8,4 +8,12 @@ namespace Coinbin.net.Util
         public static string StrCat(this IEnumerable<string> instance, string separator)
             => string.Join(separator, instance);
     }
+
+    public static class StringExtensions
+    {
+        public static bool IsEmpty(this string instance)
+        {
+            return string.IsNullOrEmpty(instance);
+        }
+    }
 }
