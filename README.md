@@ -13,14 +13,17 @@ PM> Install-Package coinbin.net
 
 This is written atop [.Net
 Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
-[1.5](https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.5.md)
+[1.1](https://github.com/dotnet/standard/blob/master/docs/versions/netstandard1.1.md)
 so it supports:
 
 - .NET Core 1.0
-- .NET Framework 4.6.1
+- .NET Framework 4.5
 - Mono 4.6
 - Xamarin.iOS 10.0
 - Xamarin.Android 7.0
+- Universal Windows Platform 10
+- Windows 8.0
+- Windows Phone 8.1
 
 ## Usage
 
