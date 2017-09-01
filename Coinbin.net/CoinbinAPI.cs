@@ -28,10 +28,12 @@ namespace Coinbin.net
             _httpClient = new HttpClient();
         }
 
-        public async Task<CoinDetail> GetCoinDetails(Coin coin)
+        public async Task<CoinDetail> GetCoinDetails(string coin)
         {
+            ThrowIfInvalidCoin(coin);
+
             var url = BaseURL
-                        .AppendPathSegment(coin.GetDescription())
+                        .AppendPathSegment(coin)
                         .Build();
 
             var content = await MakeRequestAsync<CoinWrapper<CoinDetail>>(url);
@@ -39,10 +41,12 @@ namespace Coinbin.net
             return content.Coin;
         }
 
-        public async Task<CoinValue> GetCoinValue(Coin coin, decimal value)
+        public async Task<CoinValue> GetCoinValue(string coin, decimal value)
         {
+            ThrowIfInvalidCoin(coin);
+
             var url = BaseURL
-                        .AppendPathSegment(coin.GetDescription())
+                        .AppendPathSegment(coin)
                         .AppendPathSegment(Math.Round(value, 2).ToString())
                         .Build();
 
@@ -51,12 +55,15 @@ namespace Coinbin.net
             return content.Coin;
         }
 
-        public async Task<CoinExchange> GetCoinExchange(Coin fromCoin, Coin toCoin)
+        public async Task<CoinExchange> GetCoinExchange(string fromCoin, string toCoin)
         {
+            ThrowIfInvalidCoin(fromCoin);
+            ThrowIfInvalidCoin(toCoin);
+
             var url = BaseURL
-                        .AppendPathSegment(fromCoin.GetDescription())
+                        .AppendPathSegment(fromCoin)
                         .AppendPathSegment("to")
-                        .AppendPathSegment(toCoin.ToString())
+                        .AppendPathSegment(toCoin)
                         .Build();
 
             var content = await MakeRequestAsync<CoinWrapper<CoinExchange>>(url);
@@ -64,10 +71,10 @@ namespace Coinbin.net
             return content.Coin;
         }
 
-        public async Task<CoinExchangeValue> GetCoinExchangeValue (Coin fromCoin, decimal fromValue, Coin toCoin)
+        public async Task<CoinExchangeValue> GetCoinExchangeValue (string fromCoin, decimal fromValue, string toCoin)
         {
             var url = BaseURL
-                        .AppendPathSegment(fromCoin.GetDescription())
+                        .AppendPathSegment(fromCoin)
                         .AppendPathSegment(Math.Round(fromValue, 2).ToString())
                         .AppendPathSegment("to")
                         .AppendPathSegment(toCoin.ToString())
@@ -78,10 +85,10 @@ namespace Coinbin.net
             return content.Coin;
         }
 
-        public async Task<List<CoinHistory>> GetCoinHistory(Coin coin)
+        public async Task<List<CoinHistory>> GetCoinHistory(string coin)
         {
             var url = BaseURL
-                        .AppendPathSegment(coin.GetDescription())
+                        .AppendPathSegment(coin)
                         .AppendPathSegment("history")
                         .Build();
 
@@ -108,7 +115,7 @@ namespace Coinbin.net
         }
          */
 
-        public async Task<List<Coin>> GetCoins()
+        public async Task GetCoins()
             => throw new NotImplementedException("This API hasn't been implemented yet.");
 
         private async Task<T> MakeRequestAsync<T>(string url)
@@ -124,6 +131,12 @@ namespace Coinbin.net
             {
                 throw new CoinbinException(ex.Message, ex);
             }
+        }
+
+        private void ThrowIfInvalidCoin(string coin)
+        {
+            if (!CoinValidator.IsValid(coin))
+                throw new CoinbinException($"{coin} isn't a valid coin");
         }
 
         public void Dispose()
